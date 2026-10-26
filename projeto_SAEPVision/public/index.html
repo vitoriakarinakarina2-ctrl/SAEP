@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAEPVision</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="user-section">
+            <img id="user-avatar" src="imagens_usuarios/fotografo1.jpg" alt="Perfil">
+            <span id="user-handle">@SAEPVision</span>
+            <button id="btn-perfil" class="btn-black" disabled onclick="toggleMenu()">Ver Perfil</button>
+        </div>
+        <div class="company-section">SAEPVision</div>
+        <div class="login-section">
+            <button id="btn-auth" class="btn-black" onclick="abrirModalLogin()">Login</button>
+        </div>
+    </header>
+
+    <main>
+        <section id="secao-cadastro" class="cadastro-form" style="display: none;">
+            <h3>Formulário de Cadastro de Fotografias</h3>
+            <div class="form-group">
+                <label>Título da Imagem</label>
+                <input type="text" id="foto-titulo" placeholder="ex.: Dedo de Deus">
+                <span class="erro" id="erro-titulo"></span>
+            </div>
+            <div class="form-group">
+                <label>Fonte de origem</label>
+                <input type="text" id="foto-local" placeholder="ex.: Rio de Janeiro">
+                <span class="erro" id="erro-local"></span>
+            </div>
+            <div class="form-group file-group">
+                <label>Imagem</label>
+                <input type="file" id="foto-arquivo" accept=".jpg, .jpeg, .png, .gif, .webp" onchange="atualizarNomeArquivo()">
+                <span id="nome-arquivo">Nenhum arquivo escolhido</span>
+                <span class="erro" id="erro-arquivo"></span>
+            </div>
+            <button class="btn-black" onclick="cadastrarPublicacao()">Cadastrar</button>
+        </section>
+
+        <section class="busca-container">
+            <input type="text" id="input-busca" placeholder="Digite o nome do fotógrafo... ex: @fotografo1" onfocus="verificarAutenticacao(event)">
+            <img src="icones/lupa.svg" alt="Buscar" class="icone-busca" onclick="buscarFotografo()">
+            <div class="erro" id="erro-busca" style="text-align: center; margin-top: 10px;"></div>
+        </section>
+
+        <section id="galeria" class="galeria-grid"></section>
+    </main>
+
+    <aside id="menu-lateral" class="sidebar">
+        <div class="sidebar-header">
+            <h3>Perfil</h3>
+            <img src="icones/close.svg" class="fechar-btn" onclick="toggleMenu()" alt="Fechar">
+        </div>
+        <div class="sidebar-stats">
+            <p><span id="total-likes">0</span> Likes</p>
+            <p><span id="total-pubs">0</span> Publicações</p>
+        </div>
+        <button class="btn-outline menu-btn" onclick="carregarMinhasPublicacoes()">Suas publicações</button>
+        <button class="btn-outline menu-btn" onclick="efetuarLogout()">Logout</button>
+    </aside>
+
+    <div id="modal-login" class="modal">
+        <div class="modal-content">
+            <img src="icones/close.svg" class="fechar-btn" onclick="fecharModalLogin()" alt="Fechar">
+            <h2>Login</h2>
+            <div class="form-group">
+                <input type="email" id="login-email" placeholder="Digite seu e-mail">
+                <span class="erro" id="erro-email"></span>
+            </div>
+            <div class="form-group">
+                <input type="password" id="login-senha" placeholder="Digite sua senha">
+                <span class="erro" id="erro-senha"></span>
+            </div>
+            <span class="erro" id="erro-credenciais"></span>
+            <div class="modal-acoes">
+                <button class="btn-outline" onclick="fecharModalLogin()">Cancelar</button>
+                <button class="btn-black" onclick="efetuarLogin()">Login</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-left">SAEPVision</div>
+        <div class="footer-center">
+            <img src="icones/instagram.svg" alt="Instagram">
+            <img src="icones/tiktok.svg" alt="TikTok">
+            <img src="icones/linkedIn.svg" alt="LinkedIn">
+            <img src="icones/youtube.svg" alt="YouTube">
+        </div>
+        <div class="footer-right">Copyright 2026-2027</div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
